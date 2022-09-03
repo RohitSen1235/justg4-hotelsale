@@ -96,7 +96,9 @@
         </ul>
         </p>
       </div>
+    
       <div class="row col-md-6">
+        {% if user.is_authenticated %}
         <div class=" col-12 right">
           <form action="/" method="POST" enctype="multipart/form-data">{% csrf_token %}
             <!-- upload of a single file -->
@@ -109,6 +111,7 @@
             </p>
           </form>
         </div>
+        {% endif %}
         <div class="col-12">
       
           {% if result %}
