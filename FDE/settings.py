@@ -85,19 +85,19 @@ WSGI_APPLICATION = 'FDE.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-
-    #     'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'd6h62vqieq6fuh',
-    #     'HOST': 'ec2-50-19-255-190.compute-1.amazonaws.com',
-    #     'PORT': 5432,
-    #     'USER':'uczggtkouvglnz',
-    #     'PASSWORD':'92d44ec79ab53b135a3c4e9124de6a3e6e7d2ba1c0f5c7d93f83267353555107',
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd88fklevvp1bs',
+        'HOST': 'ec2-34-203-182-65.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER':'bpirethedtuucu',
+        'PASSWORD':'45a1aa95ef31bd53cb1ea08d58910dce1bbcfd2f690f764bfda3915e96365397',
+    }
 }
 
 # postgres://uczggtkouvglnz:92d44ec79ab53b135a3c4e9124de6a3e6e7d2ba1c0f5c7d93f83267353555107@ec2-50-19-255-190.compute-1.amazonaws.com:5432/d6h62vqieq6fuh
@@ -151,39 +151,6 @@ LOGOUT_REDIRECT_URL = "/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
-
-# Email Verification Parameters
-
-# EMAIL_ACTIVE_FIELD = 'is_active'
-# EMAIL_SERVER = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_ADDRESS = 'rs.freelance4@gmail.com'
-# EMAIL_FROM_ADDRESS = 'rs.freelance4@gmail.com'
-# EMAIL_PASSWORD = 'gofuckurself'
-# EMAIL_MAIL_SUBJECT = 'Confirm your account'
-# EMAIL_MAIL_HTML = 'mail_body.html'
-# EMAIL_MAIL_PLAIN = 'mail_body.txt'
-# EMAIL_PAGE_TEMPLATE = 'registration_successful.html'
-# EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000'
-
 def verified_callback(user):
     user.is_active = True
 
-
-EMAIL_VERIFIED_CALLBACK = verified_callback
-EMAIL_FROM_ADDRESS = 'rs.freelance4@gmail.com'
-EMAIL_MAIL_SUBJECT = 'Confirm your email'
-EMAIL_MAIL_HTML = 'mail_body.html'
-EMAIL_MAIL_PLAIN = 'mail_body.txt'
-EMAIL_TOKEN_LIFE = 60 * 60
-EMAIL_PAGE_TEMPLATE = 'registration_successful.html'
-EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000'
-EMAIL_MULTI_USER = True  # optional (defaults to False)
-
-# For Django Email Backend
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'rs.freelance4@gmail.com'
-EMAIL_HOST_PASSWORD = 'aqxbxeokvdehkqyd'  # os.environ['password_key'] suggested
-EMAIL_USE_TLS = True

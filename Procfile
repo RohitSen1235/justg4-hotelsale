@@ -1,0 +1,1 @@
+web: gunicorn FDE.wsgi --log-file=-
