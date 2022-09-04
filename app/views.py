@@ -12,7 +12,7 @@ import xlwt
 
 # declaring empty dataframe globaly for storing fetched data
 data:pd.DataFrame
-file_name:str
+file_name:str =""
 
 
 #  auxilary functions
