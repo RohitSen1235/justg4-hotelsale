@@ -230,7 +230,7 @@ def signin(request):
         return redirect("/")
     else:
 
-        return render(request,"login.html",context=content)
+        return render(request,"registration/login.html",context=content)
 
 
 def signup(request):
