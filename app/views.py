@@ -225,7 +225,7 @@ def signin(request):
 
         form=User(request.POST)
 
-        # print(form)
+        print(form)
         
         return redirect("/")
     else:
