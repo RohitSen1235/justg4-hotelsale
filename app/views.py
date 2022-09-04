@@ -175,7 +175,7 @@ def download_file(request):
 
     global data
 
-    global file_namesss
+    global file_name
 
     # setting respose type to be excel
     response = HttpResponse(content_type='application/ms-excel')
