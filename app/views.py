@@ -171,6 +171,7 @@ def index(request):
 
     return render(request,"index.html",context=content)
 
+
 def download_file(request):
 
     if request.method == 'POST':
@@ -216,7 +217,6 @@ def download_file(request):
         return(response)
 
 
-
 def signin(request):
     
     content={}
@@ -224,7 +224,7 @@ def signin(request):
 
         form=request.POST
 
-        print(form)
+        # print(form)
         
         return redirect("/")
 
