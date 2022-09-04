@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from app.forms import SignUpForm
 import random
 import time
@@ -222,13 +223,14 @@ def signin(request):
     content={}
     if request.method == "POST":
 
-        form=request.POST
+        form=User(request.POST)
 
         # print(form)
         
         return redirect("/")
+    else:
 
-    return render(request,"login.html",context=content)
+        return render(request,"login.html",context=content)
 
 
 def signup(request):
