@@ -129,7 +129,7 @@ def index(request):
         global data
         global file_name
 
-        # time.sleep(random.randint(1,3))
+        time.sleep(random.randint(1,3))
 
         file= request.FILES.get('excel_file')
 
@@ -173,45 +173,47 @@ def index(request):
 
 def download_file(request):
 
-    global data
-
-    global file_name
-
-    # setting respose type to be excel
-    response = HttpResponse(content_type='application/ms-excel')
-    # setting file name and type as attachment
-    response['Content-Disposition'] = f'attachment; filename="{file_name}_sale_chance.xls" '
-    # reading raw data
-    raw_data=data
-    # creating a new dataframe with only essential data
-    download_data=raw_data[['Parcel ID','chance_of_sale']]
-    # creating a excel workbook
-    wb=xlwt.Workbook()
-    # adding sheets to workbook
-    ws=wb.add_sheet("Parcels_Probable Sale Chance")
-
-    # adding transaction data to worksheet
-    # setting font styleherok
-    font_style_header = xlwt.XFStyle()
-    font_style_header.font.bold = True
-
-    columns=['Parcel ID','chance_of_sale']
-    row_num=0
-    for i in range(len(columns)):
-        ws.write(row_num,i,columns[i],font_style_header)
-
-    font_style_rows = xlwt.XFStyle()
-    font_style_rows.font.bold = False
-
-    offset=0
-    for i in range(offset,len(download_data)):
+    if request.method == 'POST':
         
-        ws.write(i-offset+1, 0, download_data['Parcel ID'].iloc[i], font_style_rows)
-        ws.write(i-offset+1, 1, download_data['chance_of_sale'].iloc[i], font_style_rows)
-        
-    wb.save(response)
+        global data
 
-    return(response)
+        global file_name
+
+        # setting respose type to be excel
+        response = HttpResponse(content_type='application/ms-excel')
+        # setting file name and type as attachment
+        response['Content-Disposition'] = f'attachment; filename="{file_name}_sale_chance.xls" '
+        # reading raw data
+        raw_data=data
+        # creating a new dataframe with only essential data
+        download_data=raw_data[['Parcel ID','chance_of_sale']]
+        # creating a excel workbook
+        wb=xlwt.Workbook()
+        # adding sheets to workbook
+        ws=wb.add_sheet("Parcels_Probable Sale Chance")
+
+        # adding transaction data to worksheet
+        # setting font styleherok
+        font_style_header = xlwt.XFStyle()
+        font_style_header.font.bold = True
+
+        columns=['Parcel ID','chance_of_sale']
+        row_num=0
+        for i in range(len(columns)):
+            ws.write(row_num,i,columns[i],font_style_header)
+
+        font_style_rows = xlwt.XFStyle()
+        font_style_rows.font.bold = False
+
+        offset=0
+        for i in range(offset,len(download_data)):
+
+            ws.write(i-offset+1, 0, download_data['Parcel ID'].iloc[i], font_style_rows)
+            ws.write(i-offset+1, 1, download_data['chance_of_sale'].iloc[i], font_style_rows)
+
+        wb.save(response)
+
+        return(response)
 
 
 
