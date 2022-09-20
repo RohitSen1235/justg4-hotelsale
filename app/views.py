@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
-from app.forms import SignUpForm
+from app.forms import SignUpForm,LoginForm
 import random
 import time
 import pandas as pd
@@ -218,19 +218,18 @@ def download_file(request):
         return(response)
 
 
-def signin(request):
-    
-    content={}
+def login(request):
+    form= LoginForm()
+
+    content={'form':form}
     if request.method == "POST":
 
-        form=User(request.POST)
-
-        print(form)
-        
-        return redirect("/")
-    else:
-
-        return render(request,"registration/login.html",context=content)
+        form=LoginForm(request.POST)
+        if form.is_valid():
+            
+            return redirect("/")
+    
+    return render(request,"registration/login.html",context=content)
 
 
 def signup(request):
@@ -249,7 +248,7 @@ def signup(request):
     else:
         form = SignUpForm()
 
-    content = {"form": form}
+        content = {"form": form}
 
     return render(request,"signup.html",context=content)
 
